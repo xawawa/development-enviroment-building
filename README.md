@@ -1,5 +1,5 @@
 # development-enviroment-building
-vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine + artifactory  の gavrant box を作る。
+vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine + artifactory  の vagrant box を作る。
 
 1. gitをインストールする。
 
