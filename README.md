@@ -83,3 +83,64 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
    ~~~bash
    $ yum --enablerepo=epel,remi install -y sudo vim-enhanced syslog httpd httpd-devel php php-devel php-pear php-mysql php-gd php-mbstring php-pecl-imagick mariadb-server wget git java-1.8.0-openjdk-devel.x86_64 tomcat
    ~~~
+
+1. 各種サービスを起動する。
+
+  ~~~bash
+  $ systemctl start httpd
+  $ systemctl enable httpd
+  $ systemctl start tomcat
+  $ systemctl enable tomcat
+  $ systemctl start mariadb
+  $ systemctl enable mariadb
+  ~~~
+
+## Gitbucketをインストール
+
+1. 下記サイトから取得、配置する。
+
+  ~~~bash
+  $ cd /var/lib/tomcat/webapps
+  $ wget https://github.com/gitbucket/gitbucket/releases/download/4.6/gitbucket.war
+  $ chmod 777 gitbucket.war
+  ~~~
+
+## Jenkinsをインストール
+
+~~~bash
+$ cd /var/lib/tomcat/webapps
+$ wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+$ chmod 777 jenkins.war
+~~~
+
+## ファイアウォールの設定
+
+  ~~~bash
+  $ firewall-cmd --add-port=80/tcp --permanent
+  ~~~
+
+## Apacheのプロキシ設定
+
+  ~~~bash
+  $ vim /etc/httpd/conf.d/gitbucket.conf
+  ~~~
+
+gitbucket.conの内容
+
+  ~~~
+  <Location /gitbucket>
+    ProxyPass ajp://localhost:8009/gitbucket
+  </Location>
+  ~~~
+
+  ~~~bash
+  $ vim /etc/httpd/conf.d/jenkins.conf
+  ~~~
+
+jenkins.conの内容
+
+  ~~~
+  <Location /jenkins>
+    ProxyPass ajp://localhost:8009/jenkins
+  </Location>
+  ~~~
