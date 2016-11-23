@@ -151,14 +151,14 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
 | 設定箇所       | 設定値        |
 |:--------------|:--------------|
-| ホストポート | 20080         |
+| ホストポート | 8080         |
 | ゲストIP     | 192.168.33.10 |
 | ゲストポート | 80            |
 
 1. ホストPCブラウザからアクセス確認する。
 
-  > http://localhost:20080/gitbucket
-  > http://localhost:20080/jenkins
+  > http://localhost:8080/gitbucket
+  > http://localhost:8080/jenkins
 
 ## redmineのインストール
 
@@ -178,16 +178,17 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
      $ git clone https://github.com/farend/redmine-centos-ansible.git
      ~~~
 
-  1. インストールする。
+  1. パスワードを変更し、インストールする。
 
      ~~~bash
      $ cd redmine-centos-ansible
+     $ vim group_vars/redmine-servers
      $ ansible-playbook -i hosts site.yml
      ~~~
 
   1. ホストPCブラウザからアクセス確認する。
 
-    > http://localhost:20080/redmine
+    > http://localhost:8080/redmine
 
 
   ### redmineインストール時に発生したエラーの対処方法
@@ -238,7 +239,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
     > 再実行
 
-## subversionのインストールと設定
+## Subversionのインストールと設定
 
   1. subversionがインストール済か確認する。（インストール済のバージョン等が表示される。）
 
@@ -277,8 +278,8 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
     ~~~bash
     $ mkdir /var/www/svn
     $ cd /var/www/svn
-    $ svnadmin create compas
-    $ chown apache:apache compas
+    $ svnadmin create repo
+    $ chown apache:apache repo
     ~~~
 
   1. apacheを再起動する。
@@ -289,7 +290,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
   1. ホストPCブラウザからアクセス確認する。
 
-    > http://localhost:20080/svn/compas
+    > http://localhost:8080/svn/compas
 
 
 ## RedmineとSubversionを連携する。（RedmineアカウントでSVNの認証を行う）
@@ -351,7 +352,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
     認証時に使用されるアカウントは、Subversion のパッケージ名と一致する識別子を持つプロジェクトのメンバーであることが必要。
     Redmineで識別子を compas とするプロジェクトを作成し、Subversionにアクセスするユーザーをメンバーに登録します。
-    http://localhost/svn/compasにアクセスし、Redmineのアカウントで認証できることを確認します。
+    http://localhost/svn/repo にアクセスし、Redmineのアカウントで認証できることを確認します。
 
 
 ## Artifactoryのインストール
@@ -411,4 +412,4 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
   1. ホストPCブラウザからアクセス確認する。
 
-    > http://localhost:20080/artifactory
+    > http://localhost:8080/artifactory
