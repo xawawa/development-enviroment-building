@@ -273,7 +273,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
     </Location>
     ~~~
 
-  1. レポジトリの作成する。（作成する名前はなんでも良いがRedmineの識別子と同じものにする：compasとしている）
+  1. レポジトリの作成する。（作成する名前はなんでも良いがRedmineの識別子と同じものにする：repoとしている）
 
     ~~~bash
     $ mkdir /var/www/svn
@@ -290,7 +290,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
 
   1. ホストPCブラウザからアクセス確認する。
 
-    > http://localhost:8080/svn/compas
+    > http://localhost:8080/svn/repo
 
 
 ## RedmineとSubversionを連携する。（RedmineアカウントでSVNの認証を行う）
@@ -351,7 +351,7 @@ vagrant + vritualbox + cenos + apache + tomcat + gitbucket + jenkins + redmine +
   1. Redmineにアカウント管理用のプロジェクトを作成する。
 
     認証時に使用されるアカウントは、Subversion のパッケージ名と一致する識別子を持つプロジェクトのメンバーであることが必要。
-    Redmineで識別子を compas とするプロジェクトを作成し、Subversionにアクセスするユーザーをメンバーに登録します。
+    Redmineで識別子を repo とするプロジェクトを作成し、Subversionにアクセスするユーザーをメンバーに登録します。
     http://localhost/svn/repo にアクセスし、Redmineのアカウントで認証できることを確認します。
 
 
